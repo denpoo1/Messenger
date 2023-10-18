@@ -1,4 +1,6 @@
-# Project Name
+![Logo](https://media4.giphy.com/media/ya4eevXU490Iw/giphy.gif)
+
+# Messenger
 
 ## Introduction
 
