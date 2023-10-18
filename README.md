@@ -52,9 +52,12 @@ To bring this project to life, we utilized a variety of technologies:
 
 - **Backend:** Java ☕
 - **Version Control:** Git 📜
-- **Database:** SQL 🗃️
+- **Database:** Cassandra 🗃️
 - **Containerization:** Docker 🐳
-- **Application Framework:** Spring Boot 🚀
+- **Application Framework:** Spring Boot, Spring Cloud, Spring WebSocket 🚀
+- **Metrics:** Grafana, Prometheus 🚀
+- **Distributed Tracing System:** Zipkin 🚀
+- **Api Documentation:** Swagger 📜
 - **Cloud Hosting:** AWS ☁️
 
 Thank you for exploring our project, and we look forward to delivering a top-notch messaging experience for users across various platforms. 🌟
