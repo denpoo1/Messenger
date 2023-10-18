@@ -81,7 +81,7 @@ Thank you for using the Your Bank Web Application! 🙏
 
 ## Presentation
 
-![Introduction](img\1.png)
-![Design](img\2.png)
-![Functions](img\3.png)
-![Team](img\4.png) 😃🎨📋👥
+![Introduction](img/1.png)
+![Design](img/2.png)
+![Functions](img/3.png)
+![Team](img/4.png) 😃🎨📋👥
