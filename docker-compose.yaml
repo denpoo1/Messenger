@@ -19,6 +19,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "9000:9000"
     depends_on:
       apache-cassandra:
         condition: service_healthy
@@ -127,6 +129,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "5000:5000"
     depends_on:
       apache-cassandra:
         condition: service_healthy
@@ -139,6 +143,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "4000:4000"
     depends_on:
       apache-cassandra:
         condition: service_healthy
@@ -151,6 +157,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "3000:3000"
     depends_on:
       apache-cassandra:
         condition: service_healthy
@@ -163,6 +171,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "1000:1000"
     depends_on:
       apache-cassandra:
         condition: service_healthy
@@ -175,6 +185,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "7000:7000"
     depends_on:
       apache-cassandra:
         condition: service_healthy
@@ -187,6 +199,8 @@ services:
     restart: always
     networks:
       - backend
+    ports:
+      - "6000:6000"
     depends_on:
       apache-cassandra:
         condition: service_healthy

@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+
+  cassandra:
+    container_name: cassandra
+    image: cassandra:latest
+    ports:
+      - "9042:9042"
+    networks:
+      - messaging-network
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - messaging-network
+
+networks:
+  messaging-network:
