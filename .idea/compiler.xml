@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="message_service" />
-        <module name="Message-Service" />
         <module name="group-service" />
         <module name="lastSeen_service" />
         <module name="Asset-Service" />
@@ -17,6 +16,9 @@
         <module name="Relay-Service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Message-Service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

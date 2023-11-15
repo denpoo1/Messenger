@@ -10,6 +10,5 @@
     <mapping directory="$PROJECT_DIR$/Backend/Messaging-Service" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Backend/Relay-Service" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Backend/UserProfile-Service" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Message-Service" vcs="Git" />
   </component>
 </project>

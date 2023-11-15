@@ -18,9 +18,33 @@ services:
     networks:
       - messaging-network
 
+#postgres:
+#  image: debezium/example-postgres:1.9
+#  container_name: postgres
+#  ports:
+#    - 5433:5432
+#  environment:
+#    - POSTGRES_USER=postgres
+#    - POSTGRES_PASSWORD=postgres
+
+
+
+#  postgres:
+#    container_name: postgres
+#    image: postgres
+#    restart: always
+#    environment:
+#      - POSTGRES_DB=messenger
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=25032001
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - messaging-network
+
   postgres:
     container_name: postgres
-    image: postgres
+    image: debezium/example-postgres:2.4
     restart: always
     environment:
       - POSTGRES_DB=messenger
@@ -28,6 +52,62 @@ services:
       - POSTGRES_PASSWORD=25032001
     ports:
       - "5432:5432"
+    networks:
+      - messaging-network
+
+## Kafka----------------------------------------------------------------------
+
+  debezium-potgres-connector:
+    container_name: debezium-potgres-connector
+    image: debezium/connect:1.4
+    environment:
+      BOOTSTRAP_SERVERS: kafka:9092
+      GROUP_ID: group_invitations_connector
+      CONFIG_STORAGE_TOPIC: connect_configs
+      OFFSET_STORAGE_TOPIC: connect_offsets
+      KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+    depends_on: [ kafka ]
+    ports:
+      - "8083:8083"
+    networks:
+      - messaging-network
+
+  schema-registry:
+    container_name: schema-registry
+    image: confluentinc/cp-schema-registry:5.5.3
+    environment:
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
+      - SCHEMA_REGISTRY_HOST_NAME=schema-registry
+      - SCHEMA_REGISTRY_LISTENERS=http://schema-registry:8081,http://localhost:8081
+    ports:
+      - "8081:8081"
+    depends_on: [ zookeeper, kafka ]
+    networks:
+      - messaging-network
+
+  zookeeper:
+    container_name: zookeeper
+    image: confluentinc/cp-zookeeper:5.5.3
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - messaging-network
+
+  kafka:
+    container_name: kafka
+    image: confluentinc/cp-enterprise-kafka:5.5.3
+    depends_on: [ zookeeper ]
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.100.3:9092
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_JMX_PORT: 9991
+    ports:
+      - "9092:9092"
     networks:
       - messaging-network
 
