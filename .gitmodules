@@ -25,3 +25,6 @@
 [submodule "Backend/UserProfile-Service"]
 	path = Backend/UserProfile-Service
 	url = git@github.com:BestMessenger/UserProfile-Service.git
+[submodule "Backend/Message-Service"]
+	path = Backend/Message-Service
+	url = git@github.com:BestMessenger/Messaging-Service.git
