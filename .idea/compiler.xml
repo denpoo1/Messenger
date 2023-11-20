@@ -13,11 +13,11 @@
         <module name="Asset-Service" />
         <module name="gateway-service" />
         <module name="discovery-service" />
-        <module name="Relay-Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Message-Service" target="17" />
+      <module name="Relay-Service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

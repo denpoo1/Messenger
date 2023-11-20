@@ -20,7 +20,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: debezium/example-postgres:2.4
+    image: debezium/example-postgres:2.4.1.Final
     restart: always
     environment:
       - POSTGRES_DB=messenger
@@ -31,11 +31,11 @@ services:
     networks:
       - messaging-network
 
-## Kafka----------------------------------------------------------------------
+  ## Kafka----------------------------------------------------------------------
 
   debezium-potgres-connector:
     container_name: debezium-potgres-connector
-    image: debezium/connect:1.4
+    image: debezium/connect:latest
     environment:
       BOOTSTRAP_SERVERS: kafka:9092
       GROUP_ID: group_invitations_connector
