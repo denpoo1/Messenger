@@ -1,198 +1,212 @@
-version: '3'
+# version: '3'
 
-services:
+# services:
 
-  apache-cassandra:
-    image: 'cassandra'
-    container_name: 'apache-cassandra'
-    networks:
-      - backend
-    healthcheck:
-      test: cqlsh
-      interval: 60s
-      retries: 5
-      timeout: 10s
+#   apache-cassandra:
+#     image: 'cassandra'
+#     container_name: 'apache-cassandra'
+#     networks:
+#       - backend
+#     healthcheck:
+#       test: cqlsh
+#       interval: 60s
+#       retries: 5
+#       timeout: 10s
 
-  group-service:
-    container_name: group-service
-    image: denpool/group-service
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      discovery-service:
-        condition: service_started
-      api-gateway:
-        condition: service_started
+#   group-service:
+#     container_name: group-service
+#     image: denpool/group-service
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "9000:9000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       discovery-service:
+#         condition: service_started
+#       api-gateway:
+#         condition: service_started
 
-  discovery-service:
-    container_name: discovery-service
-    image: denpool/discovery-service
-    restart: always
-    ports:
-      - "8761:8761"
-    networks:
-      - backend
-    depends_on:
-      zipkin:
-        condition: service_healthy
-      apache-cassandra:
-        condition: service_healthy
-
-
-  zipkin:
-    container_name: zipkin
-    image: openzipkin/zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-
-  api-gateway:
-    container_name: api-gateway
-    image: denpool/gateway-service
-    environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-service:8761/eureka
-    ports:
-      - "8080:8080"
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      zipkin:
-        condition: service_healthy
-      discovery-service:
-        condition: service_started
-
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus:v2.37.1
-    restart: always
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      asset-service:
-        condition: service_started
-      discovery-service:
-        condition: service_started
-      api-gateway:
-        condition: service_started
-      group-service:
-        condition: service_started
-      lastseen-service:
-        condition: service_started
-      message-service:
-        condition: service_started
-      relay-service:
-        condition: service_started
-      session-service:
-        condition: service_started
-      userprofile:
-        condition: service_started
-
-  grafana:
-    container_name: grafana
-    image: grafana/grafana-oss:8.5.2
-    restart: always
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./grafana:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=password
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      prometheus:
-        condition: service_started
-
-  lastseen-service:
-    container_name: lastseen-service
-    image: denpool/lastseen-service
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      group-service:
-        condition: service_started
-
-  relay-service:
-    container_name: relay-service
-    image: denpool/relay-service
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      lastseen-service:
-        condition: service_started
-
-  asset-service:
-    container_name: asset-service
-    image: denpool/asset-service
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      relay-service:
-        condition: service_started
-
-  message-service:
-    container_name: message-service
-    image: denpool/message-service
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      asset-service:
-        condition: service_started
-
-  userprofile:
-    container_name: userprofile-service
-    image: denpool/userprofile-service:version3
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      message-service:
-        condition: service_started
-
-  session-service:
-    container_name: session-service
-    image: denpool/session-service:version3
-    restart: always
-    networks:
-      - backend
-    depends_on:
-      apache-cassandra:
-        condition: service_healthy
-      userprofile:
-        condition: service_started
+#   discovery-service:
+#     container_name: discovery-service
+#     image: denpool/discovery-service
+#     restart: always
+#     ports:
+#       - "8761:8761"
+#     networks:
+#       - backend
+#     depends_on:
+#       zipkin:
+#         condition: service_healthy
+#       apache-cassandra:
+#         condition: service_healthy
 
 
-networks:
-  backend:
+#   zipkin:
+#     container_name: zipkin
+#     image: openzipkin/zipkin
+#     ports:
+#       - "9411:9411"
+#     networks:
+#       - backend
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+
+#   api-gateway:
+#     container_name: api-gateway
+#     image: denpool/gateway-service
+#     environment:
+#       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-service:8761/eureka
+#     ports:
+#       - "8080:8080"
+#     networks:
+#       - backend
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       zipkin:
+#         condition: service_healthy
+#       discovery-service:
+#         condition: service_started
+
+#   prometheus:
+#     container_name: prometheus
+#     image: prom/prometheus:v2.37.1
+#     restart: always
+#     ports:
+#       - "9090:9090"
+#     volumes:
+#       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+#     networks:
+#       - backend
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       asset-service:
+#         condition: service_started
+#       discovery-service:
+#         condition: service_started
+#       api-gateway:
+#         condition: service_started
+#       group-service:
+#         condition: service_started
+#       lastseen-service:
+#         condition: service_started
+#       message-service:
+#         condition: service_started
+#       relay-service:
+#         condition: service_started
+#       session-service:
+#         condition: service_started
+#       userprofile:
+#         condition: service_started
+
+#   grafana:
+#     container_name: grafana
+#     image: grafana/grafana-oss:8.5.2
+#     restart: always
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./grafana:/var/lib/grafana
+#     environment:
+#       - GF_SECURITY_ADMIN_USER=admin
+#       - GF_SECURITY_ADMIN_PASSWORD=password
+#     networks:
+#       - backend
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       prometheus:
+#         condition: service_started
+
+#   lastseen-service:
+#     container_name: lastseen-service
+#     image: denpool/lastseen-service
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       group-service:
+#         condition: service_started
+
+#   relay-service:
+#     container_name: relay-service
+#     image: denpool/relay-service
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "4000:4000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       lastseen-service:
+#         condition: service_started
+
+#   asset-service:
+#     container_name: asset-service
+#     image: denpool/asset-service
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       relay-service:
+#         condition: service_started
+
+#   message-service:
+#     container_name: message-service
+#     image: denpool/message-service
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "1000:1000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       asset-service:
+#         condition: service_started
+
+#   userprofile:
+#     container_name: userprofile-service
+#     image: denpool/userprofile-service:version3
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "7000:7000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       message-service:
+#         condition: service_started
+
+#   session-service:
+#     container_name: session-service
+#     image: denpool/session-service:version3
+#     restart: always
+#     networks:
+#       - backend
+#     ports:
+#       - "6000:6000"
+#     depends_on:
+#       apache-cassandra:
+#         condition: service_healthy
+#       userprofile:
+#         condition: service_started
+
+
+# networks:
+#   backend:
