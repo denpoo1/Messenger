@@ -1,0 +1,64 @@
+#global:
+#  scrape_interval:     10s
+#  evaluation_interval: 10s
+#
+#scrape_configs:
+#  - job_name: 'group-service'
+#    metrics_path: 'actuator/prometheus'
+#    static_configs:
+#      - targets: ['group-service:9000']
+#        labels:
+#          application: 'Group Service Application'
+global:
+  scrape_interval:     10s
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'group-service'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['group-service:9000']
+        labels:
+          application: 'Group Service Application'
+
+  - job_name: 'discovery-service'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['discovery-service:8761']
+        labels:
+          application: 'Discovery Service Application'
+
+  - job_name: 'api-gateway'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['api-gateway:8080']
+        labels:
+          application: 'API Gateway Application'
+
+  - job_name: 'lastseen-service'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['lastseen-service:5000']
+        labels:
+          application: 'Lastseen Service Application'
+
+  - job_name: 'relay-service'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['relay-service:4000']
+        labels:
+          application: 'Relay Service Application'
+
+  - job_name: 'asset-service'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['asset-service:3000']
+        labels:
+          application: 'Asset Service Application'
+
+  - job_name: 'message-service'
+    metrics_path: 'actuator/prometheus'
+    static_configs:
+      - targets: ['message-service:1000']
+        labels:
+          application: 'Message Service Application'

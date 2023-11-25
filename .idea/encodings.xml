@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Backend/Asset-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Diskivery-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Gateway-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Group-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/LastSeen-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Messaging-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Backend/Relay-Service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Message-Service/src/main/java" charset="UTF-8" />
+  </component>
+</project>
