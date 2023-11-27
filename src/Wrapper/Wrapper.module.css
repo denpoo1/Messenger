@@ -1,8 +1,5 @@
-.wrapper {
-  height: 100vh;
-}
+
 .divWraps {
-  position: absolute;
   display: flex;
   background-color: var(--main-color);
   width: 100%;
