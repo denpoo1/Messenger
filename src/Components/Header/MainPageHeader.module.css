@@ -15,18 +15,19 @@
   font-size: var(--size24);
   font-style: normal;
   font-weight: 800;
-  line-height: calc((32 / 390) * 100vmin); 
+  line-height: calc((32 / 390) * 100vmin);
   margin-left: calc((15 / 390) * 100vmin);
 }
-.ava {
-  width: calc((70 / 390) * 100vmin);
-  height: calc((65 / 390) * 100vmin);
-  flex-shrink: 0;
-  background: url(/static/media/ava.bfbfc95d.jpg), lightgray -22.04px 33.556px / 92.153% 70.444% no-repeat;
-  background-position: 57% 47%;
-  background-size: cover;
-  background-size: 400% 500%;
-  border-radius: calc((50 / 390) * 100vmin);
-}
 
+.qwe{
+  max-width: 70px;
+  max-height: 70px;
+}
+.ava {
+  width: calc((65 / 390) * 100vmin);
+  height: calc((65 / 390) * 100vmin);
+  background-size: cover;
+  border-radius: calc((50 / 390) * 100vmin);
+
+}
 

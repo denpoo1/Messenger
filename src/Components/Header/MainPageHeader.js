@@ -6,7 +6,9 @@ const MainPageHeader = () => {
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.logoWrapper}>
-        <div className={styles.ava} ></div>
+        <div className={styles.qwe}>
+        <img className={styles.ava} src={ava} />
+        </div>
         <h2 className={styles.pageTitle}>Chats</h2>
       </div>
       <div>
@@ -17,15 +19,15 @@ const MainPageHeader = () => {
           viewBox="0 0 26 28"
           fill="none"
         >
-          <circle cx="9" cy="9" r="7" stroke="white" stroke-width="3" />
+          <circle cx="9" cy="9" r="7" stroke="white" strokeWidth="3" />
           <line
             x1="14.1213"
             y1="15"
             x2="24.0208"
             y2="24.8995"
             stroke="white"
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           />
         </svg>
       </div>

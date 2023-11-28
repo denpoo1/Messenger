@@ -4,7 +4,6 @@
   background-color: var(--main-color);
   width: 100%;
   height: calc((80 / 390) * 100vmin);
-  flex-shrink: 0;
 }
 .upDiv {
   top: 0;
@@ -16,6 +15,8 @@
 }
 
 .bottomDiv {
+  position: absolute;
+  height: calc((60 / 390) * 100vmin);
   bottom: 0;
   border-radius: calc((10 / 390) * 100vmin) calc((10 / 390) * 100vmin) 0px 0px;
   filter: drop-shadow(

@@ -1,0 +1,36 @@
+.footerWrapper {
+  padding: 0px calc((60 / 390) * 100vmin);
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.listOfFooterIcons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.elemOfFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.footerImg {
+  width: calc((23 / 390) * 100vmin);
+  height: calc((23 / 390) * 100vmin);
+}
+
+.footerImgLabel {
+  margin-top: calc((5 / 390) * 100vmin);
+  text-align: center;
+  font-size: calc((14 / 390) * 100vmin);
+  font-style: normal;
+  font-weight: 400;
+  line-height: calc((15 / 390) * 100vmin);
+  letter-spacing: calc((0.5 / 390) * 100vmin);
+}
