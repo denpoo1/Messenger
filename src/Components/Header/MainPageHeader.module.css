@@ -1,0 +1,33 @@
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px calc((20 / 390) * 100vmin);
+  align-items: center;
+}
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+.pageTitle {
+  color: var(--White, var(--White, #fff));
+  font-family: Roboto;
+  font-size: var(--size24);
+  font-style: normal;
+  font-weight: 800;
+  line-height: calc((32 / 390) * 100vmin);
+  margin-left: calc((15 / 390) * 100vmin);
+}
+
+.qwe{
+  max-width: 70px;
+  max-height: 70px;
+}
+.ava {
+  width: calc((65 / 390) * 100vmin);
+  height: calc((65 / 390) * 100vmin);
+  background-size: cover;
+  border-radius: calc((50 / 390) * 100vmin);
+
+}
+
