@@ -48,9 +48,9 @@ const Footer = () => {
               src={activeElement === index ? elem.activeImg : elem.notActiveImg}
               alt={elem.name}
             />
-            {activeElement === index && (
-              <span className={styles.footerImgLabel}>{elem.name}</span>
-            )}
+            
+              <span className={`${activeElement === index ? styles.active : ""} ${styles.footerImgLabel}`}>{elem.name}</span>
+            
           </div>
         ))}
       </div>

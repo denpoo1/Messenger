@@ -34,3 +34,7 @@
   line-height: calc((15 / 390) * 100vmin);
   letter-spacing: calc((0.5 / 390) * 100vmin);
 }
+
+.active{
+  color: var(--white);
+}

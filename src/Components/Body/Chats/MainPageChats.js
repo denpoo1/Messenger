@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MainPageChats.module.css";
-import group25c from "../../../img/25c.jpg";
 import img1 from "../../../img/1.jpg";
 import img2 from "../../../img/2.jpg";
 import img3 from "../../../img/3.jpg";
@@ -14,18 +13,35 @@ import img10 from "../../../img/10.jpg";
 import uncheck from "../../../img/unchek.svg";
 import check from "../../../img/check.svg";
 import groupIcon from "../../../img/Team.svg";
+import ChatModelWindow from "../../ChatModelWindow/ChatModelWindow";
+import UpWrapper from "../../../Wrapper/UpWrapper.js";
+import DownWrapper from "../../../Wrapper/Wrapper.js";
+import Footer from "../../Footer/Footer.js";
+import MainPageHeader from "../../Header/MainPageHeader.js";
 
 const MainPageChats = () => {
+  const [selectedChat, setSelectedChat] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const cutText = (text) => {
     if (text.length > 50) {
       return text.slice(0, 50) + "...";
     }
-    console.log(text);
     return text;
+  };
+  const openModal = (chat) => {
+    setSelectedChat(chat);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedChat(null);
+    setIsModalOpen(false);
   };
 
   const chats = [
     {
+      id: "1",
       type: "chat",
       ava: `${img1}`,
       name: "Хлопчик Горобчик (Львів)",
@@ -33,7 +49,7 @@ const MainPageChats = () => {
         "Сука, я заебался эту хуйню учить, я твою джаву в рот ебал",
       time: "04:12",
       checked: false,
-      youReceiver: true
+      youReceiver: true,
     },
     {
       type: "group",
@@ -43,9 +59,9 @@ const MainPageChats = () => {
         "Та й якщо чотири людини сидять, а на атенданс лісті буде людей 15 то буде підозріло",
       time: "17:57",
       checked: true,
-      youReceiver: false
+      youReceiver: false,
     },
-    
+
     {
       type: "chat",
       ava: `${img3}`,
@@ -54,7 +70,7 @@ const MainPageChats = () => {
         "Илюха, вообщем когда мы погуляли с Соней она мне сделала ",
       time: "19:11",
       checked: true,
-      youReceiver: false
+      youReceiver: false,
     },
     {
       type: "group",
@@ -64,57 +80,52 @@ const MainPageChats = () => {
         "привет всем, в это воскресенье ивайчу всех на настолочки, около 18:00",
       time: "19:28",
       checked: true,
-      youReceiver: true
+      youReceiver: true,
     },
     {
       type: "chat",
       ava: `${img5}`,
       name: "Арсений Мантанович",
-      displayedText:
-        "Прикинь, йду на асд, зайшов в ліфт а там Іда і ми там",
+      displayedText: "Прикинь, йду на асд, зайшов в ліфт а там Іда і ми там",
       time: "20:41",
       checked: true,
-      youReceiver: false
+      youReceiver: false,
     },
     {
       type: "chat",
       ava: `${img6}`,
       name: "Михаил Киевский (торт)",
-      displayedText:
-        "Мені похуй",
+      displayedText: "Мені похуй",
       time: "18:05",
       checked: false,
-      youReceiver: false
+      youReceiver: false,
     },
     {
       type: "chat",
       ava: `${img7}`,
       name: "Антоний Кашин",
-      displayedText:
-        "антошка картошка, а ты проект по скж сделал?",
+      displayedText: "антошка картошка, а ты проект по скж сделал?",
       time: "15:01",
       checked: false,
-      youReceiver: true
+      youReceiver: true,
     },
     {
       type: "chat",
       ava: `${img8}`,
       name: "Викенд Викендович",
-      displayedText:
-        "можешь прийти в 2 очках и 2 куртках?",
+      displayedText: "можешь прийти в 2 очках и 2 куртках?",
       time: "12:11",
       checked: true,
-      youReceiver: true
+      youReceiver: true,
     },
     {
       type: "chat",
       ava: `${img9}`,
       name: "Вованус",
-      displayedText:
-        "ку, скинь матан ",
+      displayedText: "ку, скинь матан ",
       time: "8:11",
       checked: true,
-      youReceiver: false
+      youReceiver: false,
     },
     {
       type: "chat",
@@ -124,44 +135,70 @@ const MainPageChats = () => {
         "Не хотите завтра с Вовой в 17.00 собраться у нас и сыграть во что-то ?",
       time: "18:49",
       checked: false,
-      youReceiver: false
+      youReceiver: false,
     },
   ];
   return (
-    <div className={`${styles.chatList}`}>
-      {chats.map((chat, index) => (
-        <div key={index} className={styles.qwe}>
-        <div  className={styles.chatWrapper}>
-            <img className={styles.ava} src={chat.ava}/>
-          <div className={styles.chatTextWrapper}>
-            <div className={styles.nameAndTime}>
-              <div className={styles.nameWrapper}>
-              <img className={chat.type === "group" ? styles.notdeletePhoto : styles.deletePhoto} src={chat.type === "group" ? groupIcon : ""} />
-                <h2 className={styles.name}>{chat.name}</h2>
-              </div>
+    <div className={styles.wrapperForChatModel}>
+      <UpWrapper>
+        <MainPageHeader />
+      </UpWrapper>
+      <div className={`${styles.chatList}`}>
+        {chats.map((chat, index) => (
+          <div
+            key={index}
+            className={styles.qwe}
+            onClick={() => {
+              openModal(chat.name);
+              console.log(`Открыт чат: ${chat.name}`);
+            }}
+          >
+            <div className={styles.chatWrapper}>
+              <img className={styles.ava} src={chat.ava} />
+              <div className={styles.chatTextWrapper}>
+                <div className={styles.nameAndTime}>
+                  <div className={styles.nameWrapper}>
+                    <img
+                      className={
+                        chat.type === "group"
+                          ? styles.notdeletePhoto
+                          : styles.deletePhoto
+                      }
+                      src={chat.type === "group" ? groupIcon : ""}
+                    />
+                    <h2 className={styles.name}>{chat.name}</h2>
+                  </div>
 
-              <div className={styles.timeAndCheck}>
-                <img
-                  className={styles.check}
-                  src={chat.checked == true ? check : uncheck}
-                />
-                <span className={styles.time}>{chat.time}</span>
+                  <div className={styles.timeAndCheck}>
+                    <img
+                      className={`${styles.check}`}
+                      src={chat.checked === true ? check : uncheck}
+                    />
+                    <span className={styles.time}>{chat.time}</span>
+                  </div>
+                </div>
+                <div className={styles.chatMsg}>
+                  <span className={styles.receiver}>
+                    {chat.youReceiver == true ? "You" : ""}
+                  </span>
+                  <span className={styles.previewMsg}>
+                    {cutText(chat.displayedText)}
+                  </span>
+                </div>
               </div>
             </div>
-            <div className={styles.chatMsg}>
-              <span className={styles.receiver}>{chat.youReceiver == true ? "You" : ""}</span>
-              <span className={styles.previewMsg}>
-                {cutText(chat.displayedText)}
-              </span>
-            </div>
-            
+            {index < chats.length - 1 && <div className={styles.hrLine}></div>}
           </div>
-          </div>
-          {index < chats.length - 1 && <div className={styles.hrLine}></div>}
-        </div>
+        ))}
+      </div>
 
-      ))}
-    </div>
+      <DownWrapper>
+        <Footer />
+      </DownWrapper>
+      {isModalOpen && selectedChat && (
+        <ChatModelWindow closeModal={closeModal} chatName={selectedChat} isClosing={!isModalOpen} />
+      )}   
+      </div>
   );
 };
 
