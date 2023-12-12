@@ -13,6 +13,8 @@ import img8 from "../../img/8.jpg";
 import img9 from "../../img/9.jpg";
 import img10 from "../../img/10.jpg";
 const ChatModelWindow = (props) => {
+
+    
   const chats = [
     {
       id: "1",
@@ -121,11 +123,11 @@ const ChatModelWindow = (props) => {
   const selectedChatData = chats.find((chat) => chat.name === props.chatName);
   console.log(selectedChatData);
   return (
-    <div className={styles.chatWrapper}>
+    <div className={`${styles.chatWrapper} ${props.isClosing ? styles.isClosing : ""}`}>
       <UpWrapper>
         <div className={styles.chat}>
           <div className={styles.firstPartWrapper}>
-            <div className={styles.svgBtnWrapper}>
+            <div className={styles.svgBtnWrapper} onClick={props.closeModal}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="calc((16 / 390) * 100vmin)"

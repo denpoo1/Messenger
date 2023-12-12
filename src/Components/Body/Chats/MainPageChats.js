@@ -21,12 +21,22 @@ import MainPageHeader from "../../Header/MainPageHeader.js";
 
 const MainPageChats = () => {
   const [selectedChat, setSelectedChat] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const cutText = (text) => {
     if (text.length > 50) {
       return text.slice(0, 50) + "...";
     }
     return text;
+  };
+  const openModal = (chat) => {
+    setSelectedChat(chat);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedChat(null);
+    setIsModalOpen(false);
   };
 
   const chats = [
@@ -139,7 +149,7 @@ const MainPageChats = () => {
             key={index}
             className={styles.qwe}
             onClick={() => {
-              setSelectedChat(chat.name);
+              openModal(chat.name);
               console.log(`Открыт чат: ${chat.name}`);
             }}
           >
@@ -161,7 +171,7 @@ const MainPageChats = () => {
 
                   <div className={styles.timeAndCheck}>
                     <img
-                      className={styles.check}
+                      className={`${styles.check}`}
                       src={chat.checked === true ? check : uncheck}
                     />
                     <span className={styles.time}>{chat.time}</span>
@@ -185,8 +195,10 @@ const MainPageChats = () => {
       <DownWrapper>
         <Footer />
       </DownWrapper>
-      {selectedChat && <ChatModelWindow chatName={selectedChat} />}
-    </div>
+      {isModalOpen && selectedChat && (
+        <ChatModelWindow closeModal={closeModal} chatName={selectedChat} isClosing={!isModalOpen} />
+      )}   
+      </div>
   );
 };
 
