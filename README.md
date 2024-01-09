@@ -48,19 +48,45 @@ To run this web application locally, follow these steps:
 git clone https://github.com/illiamartynov/Bank_App.git
 ```
 
+## CI/CD
+
+![CI/CD](img/6.png)
+
+Step 1. Build:
+ -  Checkout the repository.
+ - Set up JDK 20 using the AdoptOpenJDK distribution.
+ - Build the project using Maven, skipping tests.
+Step 2. Tests:
+ - Checkout the repository.
+ - Set up JDK 20.
+ - Run tests using Maven.
+Step 3. Deploy to Docker Hub:
+ - Checkout the repository.
+ - Authenticate with Google using provided credentials.
+ - Install dependencies.
+ - Copy secrets from Google Secret Manager.
+ - Set up Docker Buildx.
+ - Login to Docker Hub.
+ - Build Docker image and push it to Docker Hub.
+Step 4. ArgoCD Image Updater:
+ - ArgoCD image updater monitors dockerhub for new container versions. If a new version of the container appears, it changes the kubernates manifest files and commits to the repository with the manifest files
+
+Step 5. ArgoCD:
+ - Monitors the Git repository with manifest files. If changes appear in the manifest files, deployment occurs to the kubernates cluster
+
 ## Technologies Used
 
 To bring this project to life, we utilized a variety of technologies:
 
 - **Backend:** Java ☕
 - **Version Control:** Git 📜
-- **Database:** Cassandra 🗃️
-- **Containerization:** Docker 🐳
+- **Database:** Posgres 🗃️
+- **DevOps tools:** Docker, ArgoCD, Github Actions, ArgoCD Image Updater, Kubernates  
 - **Application Framework:** Spring Boot, Spring Cloud, Spring WebSocket 🚀
 - **Metrics:** Grafana, Prometheus 🚀
 - **Distributed Tracing System:** Zipkin 🚀
 - **Api Documentation:** Swagger 📜
-- **Cloud Hosting:** AWS ☁️
+- **Cloud Hosting:** Google Cloud ☁️
 
 Thank you for exploring our project, and we look forward to delivering a top-notch messaging experience for users across various platforms. 🌟
 
