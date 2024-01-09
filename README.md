@@ -56,10 +56,12 @@ Step 1. Build:
  -  Checkout the repository.
  - Set up JDK 20 using the AdoptOpenJDK distribution.
  - Build the project using Maven, skipping tests.
+
 Step 2. Tests:
  - Checkout the repository.
  - Set up JDK 20.
  - Run tests using Maven.
+   
 Step 3. Deploy to Docker Hub:
  - Checkout the repository.
  - Authenticate with Google using provided credentials.
@@ -68,6 +70,7 @@ Step 3. Deploy to Docker Hub:
  - Set up Docker Buildx.
  - Login to Docker Hub.
  - Build Docker image and push it to Docker Hub.
+   
 Step 4. ArgoCD Image Updater:
  - ArgoCD image updater monitors dockerhub for new container versions. If a new version of the container appears, it changes the kubernates manifest files and commits to the repository with the manifest files
 
