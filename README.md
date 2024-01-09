@@ -38,14 +38,36 @@ Here's a brief overview of the key functions our messenger application offers:
 - **User and Chat Search:**
   - Search for users and chats by name or phone number. 🔍👤
 
-## Installation 
+# Installation 🏁
 
-To run this web application locally, follow these steps:
+To get started with the Run App, follow these steps:
 
-1. Clone this repository to your local machine:
+1. Open a Terminal or Command Prompt:
+   - If you're on Windows, you can use Command Prompt or PowerShell.
+   - On Linux or macOS, use the Terminal.
 
+2. Navigate to the Directory:
+   - Use the cd command to navigate to the directory where you saved the docker-compose.yml file.
 ```bash
-git clone https://github.com/illiamartynov/Bank_App.git
+cd /path/to/your/docker-compose-directory
+```
+
+3. Run Docker Compose:
+   - Execute the following command to start the Docker Compose process. Replace docker-compose.yml with the actual filename if it's different.
+```bash
+docker-compose up
+```
+
+4. Wait for Completion:
+   - Docker will download the necessary images and start the containers. This might take some time depending on your internet connection.
+
+6. Access Your Application:
+   - Once the process completes, you should see output indicating that your application is running. Access it through a web browser or another specified method.
+
+7. Stopping the Containers:
+   - To stop the running containers, open a new terminal window, navigate to the same directory, and run:
+```bash
+docker-compose down
 ```
 
 ## CI/CD
