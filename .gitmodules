@@ -23,5 +23,6 @@
         path = Backend/UserProfile-Service
         url = git@github.com:BestMessenger/UserProfile-Service.git
 [submodule "Backend/Storage-Service"]
-        path = Backend/Storage-Service
-        url = git@github.com:BestMessenger/Storage-Service.git
+	path = Backend/Storage-Service
+	url = git@github.com:BestMessenger/Storage-Service.git
+
